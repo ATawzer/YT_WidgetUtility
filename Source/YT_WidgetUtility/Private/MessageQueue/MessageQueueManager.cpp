@@ -42,7 +42,7 @@ void UMessageQueueManager::ProcessQueue()
         MessageQueue.RemoveAt(0);
 
         // Add to in-focus messages
-        UE_LOG(LogYT_WidgetUtility, Log, TEXT("MessageQueue: Adding message to in-focus messages: %s"), *NextMessage.MessageId.ToString());
+        UE_LOG(LogYT_WidgetUtility, Verbose, TEXT("MessageQueue: Adding message to in-focus messages: %s"), *NextMessage.MessageId.ToString());
         InFocusMessages.Add(NextMessage);
         OnMessageInFocus.Broadcast(NextMessage);
 
@@ -57,13 +57,13 @@ void UMessageQueueManager::ProcessQueue()
     }
     else
     {
-        UE_LOG(LogYT_WidgetUtility, Log, TEXT("MessageQueue: No messages to process"));
+        UE_LOG(LogYT_WidgetUtility, Verbose, TEXT("MessageQueue: No messages to process"));
     }
 }
 
 void UMessageQueueManager::OnMessageFocusTimeout(FMessageQueueMessage Message)
 {
-    UE_LOG(LogYT_WidgetUtility, Log, TEXT("MessageQueue: Message focus timeout: %s"), *Message.MessageId.ToString());
+    UE_LOG(LogYT_WidgetUtility, Verbose, TEXT("MessageQueue: Message focus timeout: %s"), *Message.MessageId.ToString());
 
     // Remove the message from in-focus messages
     InFocusMessages.Remove(Message);
